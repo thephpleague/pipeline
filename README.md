@@ -122,6 +122,6 @@ $pipelineBuilder->add(new LogicalOperation);
 $pipelineBuilder->add(new AnotherOperation);
 $pipelineBuilder->add(new LastOperation);
 
-$pipeline = $pipelineBuilder->createPipeline();
+$pipeline = $pipelineBuilder->buildPipeline();
 ```
 

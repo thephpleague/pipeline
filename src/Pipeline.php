@@ -59,28 +59,10 @@ class Pipeline implements PipelineInterface
      */
     public function process($payload)
     {
-        $executionChain = $this->createExecutionChain();
+        $reducer = function ($payload, OperationInterface $operation) {
+            return $operation->process($payload);
+        };
 
-        return call_user_func($executionChain, $payload);
-    }
-
-    /**
-     * Create an execution chain from the operations.
-     *
-     * @return Closure
-     */
-    private function createExecutionChain()
-    {
-        $operations = $this->operations;
-        $chain = function ($payload) { return $payload; };
-
-        /** @var OperationInterface $operation */
-        while ($operation = array_shift($operations)) {
-            $chain = function ($payload) use ($chain, $operation) {
-                return $operation->process($chain($payload));
-            };
-        }
-
-        return $chain;
+        return array_reduce($this->operations, $reducer, $payload);
     }
 }
