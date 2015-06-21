@@ -31,11 +31,9 @@ class Pipeline implements PipelineInterface
     private function guardAgainstInvalidOperations(array $operations)
     {
         foreach ($operations as $operation) {
-            // @codeCoverageIgnoreStart
             if (! $operation instanceof OperationInterface) {
                 throw new InvalidArgumentException('All operations should implement the '.OperationInterface::class);
             }
-            // @codeCoverageIgnoreEnd
         }
     }
 

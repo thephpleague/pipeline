@@ -2,6 +2,7 @@
 
 namespace spec\League\Pipeline;
 
+use InvalidArgumentException;
 use League\Pipeline\CallableOperation;
 use League\Pipeline\OperationInterface;
 use League\Pipeline\Pipeline;
@@ -44,5 +45,10 @@ class PipelineSpec extends ObjectBehavior
         ]);
 
         $this->process(1)->shouldBe(30);
+    }
+
+    function it_should_only_allow_operations_as_constructor_arguments()
+    {
+        $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [['fooBar']]);
     }
 }
