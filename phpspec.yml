@@ -1,0 +1,15 @@
+---
+suites:
+    pipeline_suite:
+        namespace: League\Pipeline
+        psr4_prefix: League\Pipeline
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+    format:
+        - html
+        - clover
+    output:
+        html: coverage
+        clover: coverage.xml
