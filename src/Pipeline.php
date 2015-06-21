@@ -2,7 +2,6 @@
 
 namespace League\Pipeline;
 
-use Closure;
 use InvalidArgumentException;
 
 class Pipeline implements PipelineInterface
@@ -18,7 +17,6 @@ class Pipeline implements PipelineInterface
     public function __construct(array $operations = [])
     {
         $this->guardAgainstInvalidOperations($operations);
-
         $this->operations = $operations;
     }
 
@@ -32,7 +30,7 @@ class Pipeline implements PipelineInterface
     {
         foreach ($operations as $operation) {
             if (! $operation instanceof OperationInterface) {
-                throw new InvalidArgumentException('All operations should implement the '.OperationInterface::class);
+                throw new InvalidArgumentException('All operations should implement the ' .OperationInterface::class);
             }
         }
     }
