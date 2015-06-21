@@ -17,11 +17,23 @@ class CallableOperation implements OperationInterface
         $this->callable = $callable;
     }
 
+    /**
+     * Process the payload.
+     *
+     * @param mixed $payload
+     * @return mixed
+     */
     public function process($payload)
     {
         return call_user_func($this->callable, $payload);
     }
 
+    /**
+     * Create a new instance from a callable.
+     *
+     * @param callable $callable
+     * @return static
+     */
     public static function forCallable(callable $callable)
     {
         return new static($callable);

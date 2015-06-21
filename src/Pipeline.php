@@ -12,35 +12,24 @@ class Pipeline implements PipelineInterface
     private $operations = [];
 
     /**
-     * @param OperationInterface[] $operations
-     */
-    public function __construct(array $operations = [])
-    {
-        $this->guardAgainstInvalidOperations($operations);
-        $this->operations = $operations;
-    }
-
-    /**
-     * Ensure all operations implement the OperationInterface.
+     * Constructor
      *
-     * @param array $operations
+     * @param OperationInterface[] $operations
      * @throws InvalidArgumentException
      */
-    private function guardAgainstInvalidOperations(array $operations)
+    public function __construct(array $operations = [])
     {
         foreach ($operations as $operation) {
             if (! $operation instanceof OperationInterface) {
                 throw new InvalidArgumentException('All operations should implement the ' .OperationInterface::class);
             }
         }
+
+        $this->operations = $operations;
     }
 
     /**
-     * Create a new pipeline
-     *
-     * @param OperationInterface $operation
-     *
-     * @return static
+     * {@inheritdoc}
      */
     public function pipe(OperationInterface $operation)
     {
