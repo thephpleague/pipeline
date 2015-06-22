@@ -10,17 +10,22 @@ class PipelineBuilder
     private $operations = [];
 
     /**
+     * Add an operation.
+     *
      * @param OperationInterface $operation
+     * @return $this
      */
     public function add(OperationInterface $operation)
     {
         $this->operations[] = $operation;
+
+        return $this;
     }
 
     /**
      * @return Pipeline
      */
-    public function buildPipeline()
+    public function build()
     {
         return new Pipeline($this->operations);
     }

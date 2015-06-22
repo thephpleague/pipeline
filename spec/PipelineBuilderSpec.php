@@ -3,6 +3,7 @@
 namespace spec\League\Pipeline;
 
 use League\Pipeline\CallableOperation;
+use League\Pipeline\OperationInterface;
 use League\Pipeline\PipelineBuilder;
 use League\Pipeline\PipelineInterface;
 use PhpSpec\ObjectBehavior;
@@ -17,7 +18,7 @@ class PipelineBuilderSpec extends ObjectBehavior
 
     function it_should_build_a_pipeline()
     {
-        $this->buildPipeline()->shouldHaveType(PipelineInterface::class);
+        $this->build()->shouldHaveType(PipelineInterface::class);
     }
 
     function it_should_collect_operations_for_a_pipeline()
@@ -26,6 +27,11 @@ class PipelineBuilderSpec extends ObjectBehavior
             return $p * 2;
         }));
 
-        $this->buildPipeline()->process(4)->shouldBe(8);
+        $this->build()->process(4)->shouldBe(8);
+    }
+
+    function it_should_have_a_fluent_build_interface(OperationInterface $operation)
+    {
+        $this->add($operation)->shouldBe($this);
     }
 }
