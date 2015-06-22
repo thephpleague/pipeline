@@ -1,5 +1,7 @@
 {
   "name": "league/pipeline",
+  "description": "A plug and play pipeline implementation.",
+  "license": "MIT",
   "autoload": {
       "psr-4": {
           "League\\Pipeline\\": "src"
@@ -9,7 +11,7 @@
     "php": ">=5.5"
   },
   "scripts": {
-    "test"
+    "test": "phpspec run"
   },
   "require-dev": {
     "phpspec/phpspec": "^2.2",
