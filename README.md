@@ -31,7 +31,7 @@ return $result;
 ## Immutability
 
 Pipelines are implemented as immutable operation chains. When you pipe a new
-operation, a new pipelines will be created with the added operation. This makes
+operation, a new pipeline will be created with the added operation. This makes
 pipelines easy to reuse, and minimizes side-effects.
 
 ## Simple Example
@@ -118,7 +118,7 @@ any given time.
 use League\Pipeline\PipelineBuilder;
 
 // Prepare the builder
-$pipelineBuilder = (new PipelineBuilder);
+$pipelineBuilder = (new PipelineBuilder)
     ->add(new LogicalOperation)
     ->add(new AnotherOperation)
     ->add(new LastOperation);
