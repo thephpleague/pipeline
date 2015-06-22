@@ -117,11 +117,13 @@ any given time.
 ```php
 use League\Pipeline\PipelineBuilder;
 
-$pipelineBuilder = new PipelineBuilder;
-$pipelineBuilder->add(new LogicalOperation);
-$pipelineBuilder->add(new AnotherOperation);
-$pipelineBuilder->add(new LastOperation);
+// Prepare the builder
+$pipelineBuilder = (new PipelineBuilder);
+    ->add(new LogicalOperation)
+    ->add(new AnotherOperation)
+    ->add(new LastOperation);
 
+// Build the pipeline
 $pipeline = $pipelineBuilder->build();
 ```
 
