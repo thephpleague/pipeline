@@ -12,7 +12,7 @@ class PipelineBuilder
     /**
      * Add an operation.
      *
-     * @param OperationInterface $operation
+     * @param  OperationInterface $operation
      * @return $this
      */
     public function add(OperationInterface $operation)

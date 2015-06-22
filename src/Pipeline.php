@@ -14,14 +14,14 @@ class Pipeline implements PipelineInterface
     /**
      * Constructor
      *
-     * @param OperationInterface[] $operations
+     * @param  OperationInterface[]     $operations
      * @throws InvalidArgumentException
      */
     public function __construct(array $operations = [])
     {
         foreach ($operations as $operation) {
             if (! $operation instanceof OperationInterface) {
-                throw new InvalidArgumentException('All operations should implement the ' .OperationInterface::class);
+                throw new InvalidArgumentException('All operations should implement the '.OperationInterface::class);
             }
         }
 
