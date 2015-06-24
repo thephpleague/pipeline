@@ -4,7 +4,6 @@ namespace spec\League\Pipeline;
 
 use InvalidArgumentException;
 use League\Pipeline\CallableOperation;
-use League\Pipeline\OperationInterface;
 use League\Pipeline\Pipeline;
 use League\Pipeline\PipelineInterface;
 use PhpSpec\ObjectBehavior;
@@ -18,23 +17,24 @@ class PipelineSpec extends ObjectBehavior
         $this->shouldHaveType(PipelineInterface::class);
     }
 
-    function it_should_pipe_operation(OperationInterface $operation)
+    function it_should_pipe_operation()
     {
+        $operation = CallableOperation::forCallable(function () {});
         $this->pipe($operation)->shouldHaveType(PipelineInterface::class);
         $this->pipe($operation)->shouldNotBe($this);
     }
 
-    function it_should_compose_pipelines(PipelineInterface $pipeline)
+    function it_should_compose_pipelines()
     {
+        $pipeline = new Pipeline();
         $this->pipe($pipeline)->shouldHaveType(PipelineInterface::class);
         $this->pipe($pipeline)->shouldNotBe($this);
     }
 
-    function it_should_process_a_payload(OperationInterface $operationInterface)
+    function it_should_process_a_payload()
     {
-        $payload = 1;
-        $operationInterface->process($payload)->willReturn(2);
-        $this->pipe($operationInterface)->process($payload)->shouldBe(2);
+        $operation = CallableOperation::forCallable(function ($payload) { return $payload + 1});
+        $this->pipe($operation)->process(1)->shouldBe(2);
     }
 
     function it_should_execute_operations_sequential()
