@@ -1,7 +1,16 @@
 {
   "name": "league/pipeline",
   "description": "A plug and play pipeline implementation.",
+  "keywords": [
+    "pipeline", "pattern", "sequential", "composition", "design pattern"
+  ],
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Frank de Jonge",
+      "email": "info@frenky.net"
+    }
+  ],
   "autoload": {
       "psr-4": {
           "League\\Pipeline\\": "src"
