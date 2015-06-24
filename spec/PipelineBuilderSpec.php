@@ -30,8 +30,9 @@ class PipelineBuilderSpec extends ObjectBehavior
         $this->build()->process(4)->shouldBe(8);
     }
 
-    function it_should_have_a_fluent_build_interface(OperationInterface $operation)
+    function it_should_have_a_fluent_build_interface()
     {
+        $operation = CallableOperation::forCallable(function () {});
         $this->add($operation)->shouldBe($this);
     }
 }
