@@ -7,9 +7,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/league/pipeline.svg?style=flat-square)](https://packagist.org/packages/league/pipeline)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/pipeline.svg?style=flat-square)](https://packagist.org/packages/league/pipeline)
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af/big.png)](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af)
-
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/44ebfc4c-0e97-4b47-925e-b17de7ddce4f/mini.png)](https://insight.sensiolabs.com/projects/44ebfc4c-0e97-4b47-925e-b17de7ddce4f)
 
 This package provides a pipeline pattern implementation.
 
