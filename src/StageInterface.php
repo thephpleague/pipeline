@@ -2,7 +2,7 @@
 
 namespace League\Pipeline;
 
-interface OperationInterface
+interface StageInterface
 {
     /**
      * Process the payload.

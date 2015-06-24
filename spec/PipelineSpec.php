@@ -3,7 +3,7 @@
 namespace spec\League\Pipeline;
 
 use InvalidArgumentException;
-use League\Pipeline\CallableOperation;
+use League\Pipeline\CallableStage;
 use League\Pipeline\Pipeline;
 use League\Pipeline\PipelineInterface;
 use PhpSpec\ObjectBehavior;
@@ -19,7 +19,7 @@ class PipelineSpec extends ObjectBehavior
 
     function it_should_pipe_operation()
     {
-        $operation = CallableOperation::forCallable(function () {});
+        $operation = CallableStage::forCallable(function () {});
         $this->pipe($operation)->shouldHaveType(PipelineInterface::class);
         $this->pipe($operation)->shouldNotBe($this);
     }
@@ -33,15 +33,15 @@ class PipelineSpec extends ObjectBehavior
 
     function it_should_process_a_payload()
     {
-        $operation = CallableOperation::forCallable(function ($payload) { return $payload + 1; });
+        $operation = CallableStage::forCallable(function ($payload) { return $payload + 1; });
         $this->pipe($operation)->process(1)->shouldBe(2);
     }
 
     function it_should_execute_operations_sequential()
     {
         $this->beConstructedWith([
-            CallableOperation::forCallable(function ($p) { return $p + 2; }),
-            CallableOperation::forCallable(function ($p) { return $p * 10; }),
+            CallableStage::forCallable(function ($p) { return $p + 2; }),
+            CallableStage::forCallable(function ($p) { return $p * 10; }),
         ]);
 
         $this->process(1)->shouldBe(30);

@@ -2,8 +2,8 @@
 
 namespace spec\League\Pipeline;
 
-use League\Pipeline\CallableOperation;
-use League\Pipeline\OperationInterface;
+use League\Pipeline\CallableStage;
+use League\Pipeline\StageInterface;
 use League\Pipeline\PipelineBuilder;
 use League\Pipeline\PipelineInterface;
 use PhpSpec\ObjectBehavior;
@@ -23,7 +23,7 @@ class PipelineBuilderSpec extends ObjectBehavior
 
     function it_should_collect_operations_for_a_pipeline()
     {
-        $this->add(CallableOperation::forCallable(function ($p) {
+        $this->add(CallableStage::forCallable(function ($p) {
             return $p * 2;
         }));
 
@@ -32,7 +32,7 @@ class PipelineBuilderSpec extends ObjectBehavior
 
     function it_should_have_a_fluent_build_interface()
     {
-        $operation = CallableOperation::forCallable(function () {});
+        $operation = CallableStage::forCallable(function () {});
         $this->add($operation)->shouldBe($this);
     }
 }

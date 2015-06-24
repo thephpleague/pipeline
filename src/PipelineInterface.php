@@ -2,14 +2,14 @@
 
 namespace League\Pipeline;
 
-interface PipelineInterface extends OperationInterface
+interface PipelineInterface extends StageInterface
 {
     /**
-     * Create a new pipeline with an appended operation.
+     * Create a new pipeline with an appended stage.
      *
-     * @param OperationInterface $operation
+     * @param StageInterface $operation
      *
      * @return static
      */
-    public function pipe(OperationInterface $operation);
+    public function pipe(StageInterface $operation);
 }

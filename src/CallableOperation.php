@@ -2,7 +2,7 @@
 
 namespace League\Pipeline;
 
-class CallableOperation implements OperationInterface
+class CallableStage implements StageInterface
 {
     /**
      * @var callable
