@@ -5,7 +5,7 @@ namespace spec\League\Pipeline;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class CallableOperationSpec extends ObjectBehavior
+class CallableStageSpec extends ObjectBehavior
 {
     function let()
     {
@@ -15,8 +15,8 @@ class CallableOperationSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('League\Pipeline\CallableOperation');
-        $this->shouldHaveType('League\Pipeline\OperationInterface');
+        $this->shouldHaveType('League\Pipeline\CallableStage');
+        $this->shouldHaveType('League\Pipeline\StageInterface');
     }
 
     function it_should_process_a_payload()
