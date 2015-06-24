@@ -33,7 +33,7 @@ class PipelineSpec extends ObjectBehavior
 
     function it_should_process_a_payload()
     {
-        $operation = CallableOperation::forCallable(function ($payload) { return $payload + 1});
+        $operation = CallableOperation::forCallable(function ($payload) { return $payload + 1; });
         $this->pipe($operation)->process(1)->shouldBe(2);
     }
 
