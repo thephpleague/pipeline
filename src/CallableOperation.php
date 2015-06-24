@@ -20,7 +20,8 @@ class CallableOperation implements OperationInterface
     /**
      * Process the payload.
      *
-     * @param  mixed $payload
+     * @param mixed $payload
+     *
      * @return mixed
      */
     public function process($payload)
@@ -31,7 +32,8 @@ class CallableOperation implements OperationInterface
     /**
      * Create a new instance from a callable.
      *
-     * @param  callable $callable
+     * @param callable $callable
+     *
      * @return static
      */
     public static function forCallable(callable $callable)
