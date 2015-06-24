@@ -8,10 +8,6 @@ php:
 
 sudo: false
 
-env:
-  - COMPOSER_OPTS=""
-  - COMPOSER_OPTS="--prefer-lowest"
-
 matrix:
   allow_failures:
     - php: 7.0
@@ -21,7 +17,7 @@ before_install:
   - if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then mv phpspec.hhvm.yml phpspec.yml; fi
 
 install:
-  - travis_retry composer update $COMPOSER_OPTS
+  - travis_retry composer install
 
 script:
   - vendor/bin/phpspec run
