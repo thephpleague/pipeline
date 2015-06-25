@@ -7,37 +7,37 @@ use InvalidArgumentException;
 class Pipeline implements PipelineInterface
 {
     /**
-     * @var OperationInterface[]
+     * @var StageInterface[]
      */
-    private $operations = [];
+    private $stages = [];
 
     /**
      * Constructor.
      *
-     * @param OperationInterface[] $operations
+     * @param StageInterface[] $stages
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(array $operations = [])
+    public function __construct(array $stages = [])
     {
-        foreach ($operations as $operation) {
-            if (!$operation instanceof OperationInterface) {
-                throw new InvalidArgumentException('All operations should implement the '.OperationInterface::class);
+        foreach ($stages as $stage) {
+            if (!$stage instanceof StageInterface) {
+                throw new InvalidArgumentException('All stages should implement the '.StageInterface::class);
             }
         }
 
-        $this->operations = $operations;
+        $this->stages = $stages;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function pipe(OperationInterface $operation)
+    public function pipe(StageInterface $stage)
     {
-        $operations = $this->operations;
-        $operations[] = $operation;
+        $stages = $this->stages;
+        $stages[] = $stage;
 
-        return new static($operations);
+        return new static($stages);
     }
 
     /**
@@ -45,10 +45,10 @@ class Pipeline implements PipelineInterface
      */
     public function process($payload)
     {
-        $reducer = function ($payload, OperationInterface $operation) {
-            return $operation->process($payload);
+        $reducer = function ($payload, StageInterface $stage) {
+            return $stage->process($payload);
         };
 
-        return array_reduce($this->operations, $reducer, $payload);
+        return array_reduce($this->stages, $reducer, $payload);
     }
 }

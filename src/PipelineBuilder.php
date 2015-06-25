@@ -5,20 +5,20 @@ namespace League\Pipeline;
 class PipelineBuilder
 {
     /**
-     * @var OperationInterface[]
+     * @var StageInterface[]
      */
-    private $operations = [];
+    private $stages = [];
 
     /**
-     * Add an operation.
+     * Add an stage.
      *
-     * @param OperationInterface $operation
+     * @param StageInterface $stage
      *
      * @return $this
      */
-    public function add(OperationInterface $operation)
+    public function add(StageInterface $stage)
     {
-        $this->operations[] = $operation;
+        $this->stages[] = $stage;
 
         return $this;
     }
@@ -28,6 +28,6 @@ class PipelineBuilder
      */
     public function build()
     {
-        return new Pipeline($this->operations);
+        return new Pipeline($this->stages);
     }
 }
