@@ -3,7 +3,6 @@
 namespace spec\League\Pipeline;
 
 use League\Pipeline\CallableStage;
-use League\Pipeline\StageInterface;
 use League\Pipeline\PipelineBuilder;
 use League\Pipeline\PipelineInterface;
 use PhpSpec\ObjectBehavior;
