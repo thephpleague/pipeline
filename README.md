@@ -19,7 +19,7 @@ chaining stages.
 In this particular implementation the interface consists of two parts:
 
 * StageInterface
-* StageInterface
+* PipelineInterface
 
 A pipeline consists of zero, one, or multiple stages. A pipeline can process
 a payload. During the processing the payload will be passed to the first stage.
@@ -98,7 +98,7 @@ $pipeline->process(new DeleteBlogPost($postId));
 ## Callable Stages
 
 The `CallableStage` class is supplied to encapsulate parameters which satisfy
-the `callable` typehint. This class enables you to use any type of callable as an
+the `callable` type hint. This class enables you to use any type of callable as an
 stage.
 
 ```php
@@ -117,10 +117,10 @@ $pipeline = (new Pipeline)
 
 ## Pipeline Builders
 
-Because Pipelines themselves are immutable, pipeline builders are introduced to
+Because pipelines themselves are immutable, pipeline builders are introduced to
 facilitate distributed composition of a pipeline.
 
-The PipelineBuilder's collect stages and allow you to create a pipelines at
+The pipeline builders collect stages and allow you to create a pipeline at
 any given time.
 
 ```php
