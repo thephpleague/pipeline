@@ -2,4 +2,4 @@ title: Pipeline
 tagline: Composable sequental operations
 description: Pipeline Pattern implementation for PHP.
 google_analytics_tracking_id:
-base_href:
+base_href: http://pipeline.thephpleague.com/
