@@ -10,7 +10,7 @@ sudo: false
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.composer/cache
 
 matrix:
   allow_failures:
