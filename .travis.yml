@@ -25,7 +25,7 @@ install:
   - travis_retry composer install
 
 script:
-  - vendor/bin/phpspec run
+  - composer test
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
