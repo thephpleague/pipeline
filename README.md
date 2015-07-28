@@ -136,3 +136,23 @@ $pipelineBuilder = (new PipelineBuilder)
 $pipeline = $pipelineBuilder->build();
 ```
 
+## Exception handling
+
+This package is completely transparent when dealing with exception. In no case
+will this package catch an exception or silence an error. Exception should be
+dealt with on a per-case basic. Either inside a __stage__ or at time when the
+pipeline processes a payload.
+
+```php
+$pipeline = (new Pipeline)
+    ->pipe(CallableStage::forCallable(function () {
+        throw new LogicException();
+    });
+    
+try {
+    $pipeline->process($payload);
+} catch(LogicException $e) {
+    // Handle the exception.
+}
+```
+
