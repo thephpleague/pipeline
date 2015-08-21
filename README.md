@@ -85,7 +85,7 @@ something along these lines:
 ```php
 $processApiRequest = (new Pipeline)
     ->pipe(new ExecuteHttpRequest) // 2
-    ->pipe(new ParseParseJsonResponse); // 3
+    ->pipe(new ParseJsonResponse); // 3
     
 $pipeline = (new Pipeline)
     ->pipe(new ConvertToPsr7Request) // 1
@@ -98,7 +98,7 @@ $pipeline->process(new DeleteBlogPost($postId));
 ## Callable Stages
 
 The `CallableStage` class is supplied to encapsulate parameters which satisfy
-the `callable` type hint. This class enables you to use any type of callable as an
+the `callable` type hint. This class enables you to use any type of callable as a
 stage.
 
 ```php
@@ -138,9 +138,9 @@ $pipeline = $pipelineBuilder->build();
 
 ## Exception handling
 
-This package is completely transparent when dealing with exception. In no case
-will this package catch an exception or silence an error. Exception should be
-dealt with on a per-case basic. Either inside a __stage__ or at time when the
+This package is completely transparent when dealing with exceptions. In no case
+will this package catch an exception or silence an error. Exceptions should be
+dealt with on a per-case basis. Either inside a __stage__ or at the time the
 pipeline processes a payload.
 
 ```php
@@ -155,4 +155,3 @@ try {
     // Handle the exception.
 }
 ```
-
