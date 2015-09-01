@@ -49,7 +49,11 @@ class Pipeline implements PipelineInterface
      */
     public function process($payload)
     {
-        return $this->__invoke($payload);
+        $reducer = function ($payload, callable $stage) {
+            return $stage($payload);
+        };
+
+        return array_reduce($this->stages, $reducer, $payload);
     }
 
     /**
@@ -57,10 +61,6 @@ class Pipeline implements PipelineInterface
      */
     public function __invoke($payload)
     {
-        $reducer = function ($payload, callable $stage) {
-            return $stage($payload);
-        };
-
-        return array_reduce($this->stages, $reducer, $payload);
+        return $this->process($payload);
     }
 }
