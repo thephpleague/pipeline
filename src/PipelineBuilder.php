@@ -5,18 +5,18 @@ namespace League\Pipeline;
 class PipelineBuilder
 {
     /**
-     * @var StageInterface[]
+     * @var callable[]
      */
     private $stages = [];
 
     /**
      * Add an stage.
      *
-     * @param StageInterface $stage
+     * @param callable $stage
      *
      * @return $this
      */
-    public function add(StageInterface $stage)
+    public function add(callable $stage)
     {
         $this->stages[] = $stage;
 

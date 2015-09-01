@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use League\Pipeline\CallableStage;
 use League\Pipeline\Pipeline;
 use League\Pipeline\PipelineInterface;
+use League\Pipeline\Stub\StubStage;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -19,36 +20,40 @@ class PipelineSpec extends ObjectBehavior
 
     function it_should_pipe_operation()
     {
-        $operation = CallableStage::forCallable(function () {});
+        $operation = function () {};
         $this->pipe($operation)->shouldHaveType(PipelineInterface::class);
         $this->pipe($operation)->shouldNotBe($this);
     }
 
     function it_should_compose_pipelines()
     {
-        $pipeline = new Pipeline();
-        $this->pipe($pipeline)->shouldHaveType(PipelineInterface::class);
-        $this->pipe($pipeline)->shouldNotBe($this);
+        $pipeline = (new Pipeline)->pipe(function () { return 10; });
+        $this->pipe($pipeline)->process('something')->shouldBe(10);
     }
 
     function it_should_process_a_payload()
     {
-        $operation = CallableStage::forCallable(function ($payload) { return $payload + 1; });
+        $operation = function ($payload) { return $payload + 1; };
         $this->pipe($operation)->process(1)->shouldBe(2);
     }
 
-    function it_should_execute_operations_sequential()
+    function it_should_execute_operations_in_sequence()
     {
         $this->beConstructedWith([
-            CallableStage::forCallable(function ($p) { return $p + 2; }),
-            CallableStage::forCallable(function ($p) { return $p * 10; }),
+            function ($p) { return $p + 2; },
+            function ($p) { return $p * 10; },
         ]);
 
-        $this->process(1)->shouldBe(30);
+        $this->__invoke(1)->shouldBe(30);
     }
 
     function it_should_only_allow_operations_as_constructor_arguments()
     {
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [['fooBar']]);
+    }
+
+    function it_should_accept_implementations_of_stage()
+    {
+        $this->pipe(new StubStage)->process('payload')->shouldBe(StubStage::STUBBED_RESPONSE);
     }
 }

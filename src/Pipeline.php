@@ -14,15 +14,15 @@ class Pipeline implements PipelineInterface
     /**
      * Constructor.
      *
-     * @param StageInterface[] $stages
+     * @param callable[] $stages
      *
      * @throws InvalidArgumentException
      */
     public function __construct(array $stages = [])
     {
         foreach ($stages as $stage) {
-            if (!$stage instanceof StageInterface) {
-                throw new InvalidArgumentException('All stages should implement the '.StageInterface::class);
+            if (false === is_callable($stage)) {
+                throw new InvalidArgumentException('All stages should be callable.');
             }
         }
 
@@ -30,9 +30,9 @@ class Pipeline implements PipelineInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    public function pipe(StageInterface $stage)
+    public function pipe(callable $stage)
     {
         $stages = $this->stages;
         $stages[] = $stage;
@@ -41,12 +41,24 @@ class Pipeline implements PipelineInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Process the payload.
+     *
+     * @param $payload
+     *
+     * @return mixed
      */
     public function process($payload)
     {
-        $reducer = function ($payload, StageInterface $stage) {
-            return $stage->process($payload);
+        return $this->__invoke($payload);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function __invoke($payload)
+    {
+        $reducer = function ($payload, callable $stage) {
+            return $stage($payload);
         };
 
         return array_reduce($this->stages, $reducer, $payload);

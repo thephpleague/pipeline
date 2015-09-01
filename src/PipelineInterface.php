@@ -7,9 +7,9 @@ interface PipelineInterface extends StageInterface
     /**
      * Create a new pipeline with an appended stage.
      *
-     * @param StageInterface $operation
+     * @param callable $operation
      *
      * @return static
      */
-    public function pipe(StageInterface $operation);
+    public function pipe(callable $operation);
 }
