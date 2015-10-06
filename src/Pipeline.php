@@ -46,7 +46,7 @@ class Pipeline implements PipelineInterface
     public function process($payload)
     {
         $reducer = function ($payload, StageInterface $stage) {
-            return $stage->process($payload);
+            return $payload === null ? null : $stage->process($payload);
         };
 
         return array_reduce($this->stages, $reducer, $payload);
