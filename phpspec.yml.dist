@@ -10,6 +10,7 @@ code_coverage:
     format:
         - html
         - clover
+        - text
     output:
         html: coverage
         clover: coverage.xml
