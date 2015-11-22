@@ -11,5 +11,5 @@ interface StageInterface
      *
      * @return mixed
      */
-    public function process($payload);
+    public function __invoke($payload);
 }

@@ -31,10 +31,16 @@ In the simplest form, the execution chain can be represented as a foreach:
 $result = $payload;
 
 foreach ($stages as $stage) {
-    $result = $stage->process($result);
+    $result = $stage($result);
 }
 
 return $result;
+```
+
+Effectively this is the same as:
+
+```php
+$result = $stage3($stage2($stage1($payload)));
 ```
 
 ## Immutability
@@ -43,7 +49,21 @@ Pipelines are implemented as immutable stage chains. When you pipe a new
 stage, a new pipeline will be created with the added stage. This makes
 pipelines easy to reuse, and minimizes side-effects.
 
-## Simple Example
+## Usage
+
+Operations in a pipeline, stages, can be anything that satisfies the `callable`
+type-hint. So closures and anything that's invokable is good.
+
+```php
+$pipeline = (new Pipeline)->pipe(function ($payload) {
+    return $payload * 10;
+});
+```
+
+## Class based stages.
+
+Class based stages are also possible. The StageInterface can be implemented which
+ensures you have the correct method signature for the `__invoke` method.
 
 ```php
 use League\Pipeline\Pipeline;
@@ -51,7 +71,7 @@ use League\Pipeline\StageInterface;
 
 class TimesTwoStage implements StageInterface
 {
-    public function process($payload)
+    public function __invoke($payload)
     {
         return $payload * 2;
     }
@@ -59,7 +79,7 @@ class TimesTwoStage implements StageInterface
 
 class AddOneStage implements StageInterface
 {
-    public function process($payload)
+    public function __invoke($payload)
     {
         return $payload + 1;
     }
@@ -95,26 +115,6 @@ $pipeline = (new Pipeline)
 $pipeline->process(new DeleteBlogPost($postId));
 ```
 
-## Callable Stages
-
-The `CallableStage` class is supplied to encapsulate parameters which satisfy
-the `callable` type hint. This class enables you to use any type of callable as a
-stage.
-
-```php
-$pipeline = (new Pipeline)
-    ->pipe(CallableStage::forCallable(function ($payload) {
-        return $payload * 10;
-    }));
-
-// or
-
-$pipeline = (new Pipeline)
-    ->pipe(new CallableStage(function ($payload) {
-        return $payload * 10;
-    }));
-```
-
 ## Pipeline Builders
 
 Because pipelines themselves are immutable, pipeline builders are introduced to
@@ -144,10 +144,9 @@ dealt with on a per-case basis. Either inside a __stage__ or at the time the
 pipeline processes a payload.
 
 ```php
-$pipeline = (new Pipeline)
-    ->pipe(CallableStage::forCallable(function () {
-        throw new LogicException();
-    });
+$pipeline = (new Pipeline)->pipe(function () {
+    throw new LogicException();
+});
     
 try {
     $pipeline->process($payload);
