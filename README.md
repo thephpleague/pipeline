@@ -69,7 +69,7 @@ ensures you have the correct method signature for the `__invoke` method.
 use League\Pipeline\Pipeline;
 use League\Pipeline\StageInterface;
 
-class TimesTwoStage implements StageInterface
+class TimeTwoStage implements StageInterface
 {
     public function __invoke($payload)
     {
