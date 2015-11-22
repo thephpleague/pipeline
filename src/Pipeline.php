@@ -53,7 +53,10 @@ class Pipeline implements PipelineInterface
             return $stage($payload);
         };
 
-        return array_reduce($this->stages, $reducer, $payload);
+        foreach ($this->stages as $stage) {
+            $payload = $reducer($payload, $stage);
+        }
+        return $payload;
     }
 
     /**
