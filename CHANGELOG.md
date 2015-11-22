@@ -1,5 +1,3 @@
 # Changelog
 
-## 1.0.0-beta - UNRELEASED
-
-Initial beta release
+## 1.0.0 - UNRELEASED
