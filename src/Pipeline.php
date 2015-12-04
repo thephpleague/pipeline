@@ -36,8 +36,10 @@ class Pipeline implements PipelineInterface
     {
         $stages = $this->stages;
         $stages[] = $stage;
+        $pipeline = new static();
+        $pipeline->stages = $stages;
 
-        return new static($stages);
+        return $pipeline;
     }
 
     /**
