@@ -10,19 +10,18 @@ title: Usage
 
 ~~~php
 use League\Pipeline\Pipeline;
-use League\Pipeline\StageInterface;
 
-class TimesTwoStage implements StageInterface
+class TimesTwoStage
 {
-    public function process($payload)
+    public function __invoke($payload)
     {
         return $payload * 2;
     }
 }
 
-class AddOneStage implements StageInterface
+class AddOneStage
 {
-    public function process($payload)
+    public function __invoke($payload)
     {
         return $payload + 1;
     }
@@ -58,26 +57,6 @@ $pipeline = (new Pipeline)
 $pipeline->process(new DeleteBlogPost($postId));
 ~~~
 
-## Callable Stages
-
-The `CallableStage` class is supplied to encapsulate parameters which satisfy
-the `callable` type-hint. This class enables you to use any type of callable as an
-stage.
-
-~~~php
-$pipeline = (new Pipeline)
-    ->pipe(CallableStage::forCallable(function ($payload) {
-        return $payload * 10;
-    }));
-
-// or
-
-$pipeline = (new Pipeline)
-    ->pipe(new CallableStage(function ($payload) {
-        return $payload * 10;
-    }));
-~~~
-
 ## Pipeline Builders
 
 Because Pipelines themselves are immutable, pipeline builders are introduced to
@@ -108,7 +87,7 @@ pipeline processes a payload.
 
 ~~~php
 $pipeline = (new Pipeline)
-    ->pipe(CallableStage::forCallable(function () {
+    ->pipe(function () {
         throw new LogicException();
     });
     
