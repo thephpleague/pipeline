@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 - 2015-12-06
+
+### Altered
+
+* Cloning is used to create the new pipeline [performance]
+* Stages are callable, so no need to wrap them in closures.
+
 ## 0.2.0 - 2015-12-04
 
 ### Changed
