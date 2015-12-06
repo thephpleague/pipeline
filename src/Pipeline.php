@@ -7,7 +7,7 @@ use InvalidArgumentException;
 class Pipeline implements PipelineInterface
 {
     /**
-     * @var StageInterface[]
+     * @var callable[]
      */
     private $stages = [];
 
@@ -34,10 +34,8 @@ class Pipeline implements PipelineInterface
      */
     public function pipe(callable $stage)
     {
-        $stages = $this->stages;
-        $stages[] = $stage;
-        $pipeline = new static();
-        $pipeline->stages = $stages;
+        $pipeline = clone $this;
+        $pipeline->stages[] = $stage;
 
         return $pipeline;
     }
