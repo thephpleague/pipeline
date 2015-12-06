@@ -49,13 +49,10 @@ class Pipeline implements PipelineInterface
      */
     public function process($payload)
     {
-        $reducer = function ($payload, callable $stage) {
-            return $stage($payload);
-        };
-
         foreach ($this->stages as $stage) {
-            $payload = $reducer($payload, $stage);
+            $payload = $stage($payload);
         }
+
         return $payload;
     }
 
