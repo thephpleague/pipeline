@@ -63,4 +63,9 @@ class Pipeline implements PipelineInterface
     {
         return $this->process($payload);
     }
+
+    public function __call($name, $arguments)
+    {
+        return $this->pipe(new $name(...$arguments));
+    }
 }
