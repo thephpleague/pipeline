@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 - 2016-03-23
+
+### Fixed
+
+* #17 - use `call_user_func` instead of invoking a variable.
+
 ## 0.2.1 - 2015-12-06
 
 ### Altered
