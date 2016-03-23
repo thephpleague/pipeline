@@ -50,7 +50,7 @@ class Pipeline implements PipelineInterface
     public function process($payload)
     {
         foreach ($this->stages as $stage) {
-            $payload = $stage($payload);
+            $payload = call_user_func($stage, $payload);
         }
 
         return $payload;
