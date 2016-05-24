@@ -86,7 +86,7 @@ class AddOneStage implements StageInterface
 }
 
 $pipeline = (new Pipeline)
-    ->pipe(new TimeTwoStage)
+    ->pipe(new TimesTwoStage)
     ->pipe(new AddOneStage);
 
 // Returns 21
