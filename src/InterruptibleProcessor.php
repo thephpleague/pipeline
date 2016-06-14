@@ -27,12 +27,9 @@ class InterruptibleProcessor implements ProcessorInterface
      */
     public function process(array $stages, $payload)
     {
-        $check = $this->check;
-
         foreach ($stages as $stage) {
-            $payload = $stage($payload);
-
-            if ($check($payload) !== true) {
+            $payload = call_user_func($stage, $payload);
+            if (true !== call_user_func($this->check, $payload)) {
                 return $payload;
             }
         }
