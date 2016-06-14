@@ -24,10 +24,14 @@ class PipelineBuilder
     }
 
     /**
+     * Build a new Pipeline object
+     *
+     * @param  ProcessorInterface $processor
+     *
      * @return Pipeline
      */
-    public function build()
+    public function build(ProcessorInterface $processor = null)
     {
-        return new Pipeline($this->stages);
+        return new Pipeline($this->stages, $processor);
     }
 }
