@@ -26,7 +26,7 @@ class PipelineBuilder
     /**
      * Build a new Pipeline object
      *
-     * @param  ProcessorInterface $processor
+     * @param  ProcessorInterface|null $processor
      *
      * @return Pipeline
      */
