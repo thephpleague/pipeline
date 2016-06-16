@@ -29,6 +29,7 @@ class InterruptibleProcessor implements ProcessorInterface
     {
         foreach ($stages as $stage) {
             $payload = call_user_func($stage, $payload);
+
             if (true !== call_user_func($this->check, $payload)) {
                 return $payload;
             }
