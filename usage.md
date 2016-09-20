@@ -47,7 +47,7 @@ something along these lines:
 ~~~php
 $processApiRequest = (new Pipeline)
     ->pipe(new ExecuteHttpRequest) // 2
-    ->pipe(new ParseParseJsonResponse); // 3
+    ->pipe(new ParseJsonResponse); // 3
     
 $pipeline = (new Pipeline)
     ->pipe(new ConvertToPsr7Request) // 1
