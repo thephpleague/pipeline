@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 - 2016-10-13
+
+* A pipeline now has a processor which is responsible for the stage invoking.
+
 ## 0.2.2 - 2016-03-23
 
 ### Fixed

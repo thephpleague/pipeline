@@ -2,7 +2,7 @@
 
 namespace League\Pipeline;
 
-class PipelineBuilder
+class PipelineBuilder implements PipelineBuilderInterface
 {
     /**
      * @var callable[]
@@ -28,7 +28,7 @@ class PipelineBuilder
      *
      * @param  ProcessorInterface|null $processor
      *
-     * @return Pipeline
+     * @return PipelineInterface
      */
     public function build(ProcessorInterface $processor = null)
     {
