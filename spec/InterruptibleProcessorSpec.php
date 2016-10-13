@@ -4,7 +4,6 @@ namespace spec\League\Pipeline;
 
 use League\Pipeline\InterruptibleProcessor;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class InterruptibleProcessorSpec extends ObjectBehavior
 {
