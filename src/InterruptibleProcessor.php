@@ -20,17 +20,14 @@ class InterruptibleProcessor implements ProcessorInterface
     }
 
     /**
-     * @param array $stages
-     * @param mixed $payload
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function process(array $stages, $payload)
+    public function process(array $stages, $payload, ...$params)
     {
         foreach ($stages as $stage) {
-            $payload = call_user_func($stage, $payload);
+            $payload = call_user_func($stage, $payload, ...$params);
 
-            if (true !== call_user_func($this->check, $payload)) {
+            if (true !== call_user_func($this->check, $payload, ...$params)) {
                 return $payload;
             }
         }

@@ -93,6 +93,27 @@ $pipeline = (new Pipeline)
 $pipeline->process(10);
 ```
 
+## Variadic arguments
+
+Using variadic arguments, it is possible to pass an unlimited number of extra
+arguments to each stage, along with the $payload.
+```
+$stage1 = function( $payload, $param1, $param2 ) {
+    // process the payload using the additional params
+};
+
+$stage2 = function( $payload, $param1, $param2 ) {
+    // process the payload using the additional params
+};
+
+$pipeline = (new Pipeline)
+    ->pipe($stage1)
+    ->pipe($stage2);
+
+$pipeline->process( $payload, $var1, $var2 );
+
+```
+
 ## Re-usable Pipelines
 
 Because the PipelineInterface is an extension of the StageInterface
@@ -106,12 +127,12 @@ something along these lines:
 $processApiRequest = (new Pipeline)
     ->pipe(new ExecuteHttpRequest) // 2
     ->pipe(new ParseJsonResponse); // 3
-    
+
 $pipeline = (new Pipeline)
     ->pipe(new ConvertToPsr7Request) // 1
     ->pipe($processApiRequest) // (2,3)
-    ->pipe(new ConvertToResponseDto); // 4 
-    
+    ->pipe(new ConvertToResponseDto); // 4
+
 $pipeline->process(new DeleteBlogPost($postId));
 ```
 
@@ -147,7 +168,7 @@ pipeline processes a payload.
 $pipeline = (new Pipeline)->pipe(function () {
     throw new LogicException();
 });
-    
+
 try {
     $pipeline->process($payload);
 } catch(LogicException $e) {

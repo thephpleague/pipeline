@@ -9,13 +9,9 @@ class StubStage implements StageInterface
     const STUBBED_RESPONSE = 'stubbed response';
 
     /**
-     * Process the payload.
-     *
-     * @param mixed $payload
-     *
-     * @return mixed
+     * @inheritdoc
      */
-    public function __invoke($payload)
+    public function __invoke($payload, ...$params)
     {
         return self::STUBBED_RESPONSE;
     }

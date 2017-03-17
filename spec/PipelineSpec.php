@@ -37,6 +37,35 @@ class PipelineSpec extends ObjectBehavior
         $this->pipe($operation)->process(1)->shouldBe(2);
     }
 
+    function it_should_process_a_payload_with_params()
+    {
+        $prefix_operation = function ( $strings, $prefix, $suffix ) {
+            return array_map( function( $string ) use ( $prefix ) {
+                return "{$prefix}{$string}";
+            }, $strings );
+        };
+
+        $suffix_operation = function ( $strings, $prefix, $suffix ) {
+            return array_map( function( $string ) use ( $suffix ) {
+                return "{$string}{$suffix}";
+            }, $strings );
+        };
+
+        $payload = [
+            'test value 1',
+            'test value 2',
+            'test value 3',
+        ];
+
+        $expected = [
+            '<test value 1>',
+            '<test value 2>',
+            '<test value 3>',
+        ];
+
+        $this->pipe($prefix_operation)->pipe($suffix_operation)->process($payload,'<','>')->shouldBe($expected);
+    }
+
     function it_should_execute_operations_in_sequence()
     {
         $this->beConstructedWith([

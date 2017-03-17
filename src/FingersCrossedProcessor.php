@@ -5,15 +5,12 @@ namespace League\Pipeline;
 class FingersCrossedProcessor implements ProcessorInterface
 {
     /**
-     * @param array $stages
-     * @param mixed $payload
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function process(array $stages, $payload)
+    public function process(array $stages, $payload, ...$params)
     {
         foreach ($stages as $stage) {
-            $payload = call_user_func($stage, $payload);
+            $payload = call_user_func($stage, $payload, ...$params);
         }
 
         return $payload;
