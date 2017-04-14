@@ -5,10 +5,11 @@ namespace League\Pipeline;
 interface ProcessorInterface
 {
     /**
-     * @param array $stages
-     * @param mixed $payload
+     * @param callable[] $stages
+     * @param mixed      $payload
+     * @param mixed      ...$params
      *
      * @return mixed
      */
-    public function process(array $stages, $payload);
+    public function process(array $stages, $payload, ...$params);
 }

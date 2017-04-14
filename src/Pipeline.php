@@ -37,7 +37,7 @@ class Pipeline implements PipelineInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function pipe(callable $stage)
     {
@@ -48,22 +48,18 @@ class Pipeline implements PipelineInterface
     }
 
     /**
-     * Process the payload.
-     *
-     * @param $payload
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function process($payload)
+    public function process($payload, ...$params)
     {
-        return $this->processor->process($this->stages, $payload);
+        return $this->processor->process($this->stages, $payload, ...$params);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function __invoke($payload)
+    public function __invoke($payload, ...$params)
     {
-        return $this->process($payload);
+        return $this->process($payload, ...$params);
     }
 }
