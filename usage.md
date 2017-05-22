@@ -82,7 +82,7 @@ $pipeline = $pipelineBuilder->build();
 
 This package is completely transparent when dealing with exception. In no case
 will this package catch an exception or silence an error. Exception should be
-dealt with on a per-case basic. Either inside a __stage__ or at time when the
+dealt with on a per-case basis. Either inside a __stage__ or at time when the
 pipeline processes a payload.
 
 ~~~php
