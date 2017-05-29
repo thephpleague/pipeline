@@ -12,10 +12,8 @@ class FingersCrossedProcessor implements ProcessorInterface
      */
     public function process(array $stages, $payload)
     {
-        foreach ($stages as $stage) {
-            $payload = call_user_func($stage, $payload);
-        }
-
-        return $payload;
+        return array_reduce($stages, function ($payload, callable $stage) {
+            return call_user_func($stage, $payload);
+        }, $payload);
     }
 }
