@@ -9,7 +9,7 @@ class Pipeline implements PipelineInterface
     /**
      * @var callable[]
      */
-    private $stages = [];
+    protected $stages = [];
 
     /**
      * @var ProcessorInterface
@@ -57,6 +57,21 @@ class Pipeline implements PipelineInterface
     public function process($payload)
     {
         return $this->processor->process($this->stages, $payload);
+    }
+
+    /**
+     * Fork the pipeline
+     *
+     * @param callable|null $resolver
+     *
+     * @return Fork
+     */
+    public function fork(callable $resolver = null)
+    {
+        $fork = new Fork($resolver);
+        $pipeline = $this->pipe($fork);
+        $fork->pipeline($pipeline);
+        return $fork;
     }
 
     /**

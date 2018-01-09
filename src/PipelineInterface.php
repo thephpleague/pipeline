@@ -12,4 +12,13 @@ interface PipelineInterface extends StageInterface
      * @return static
      */
     public function pipe(callable $operation);
+
+    /**
+     * Forks the pipeline with the given fork
+     *
+     * @param callable $resolver
+     *
+     * @return ForkInterface
+     */
+    public function fork(callable $resolver);
 }
