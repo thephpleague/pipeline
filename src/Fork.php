@@ -22,12 +22,13 @@ class Fork implements ForkInterface
 
     /**
      * Fork constructor.
-     *
      * @param callable|null $resolver
+     * @param array $forks
      */
-    public function __construct(callable $resolver = null)
+    public function __construct(callable $resolver = null, $forks = [])
     {
         $this->resolver = $resolver;
+        $this->forks = $forks;
     }
 
     public function pipeline(Pipeline $pipeline)

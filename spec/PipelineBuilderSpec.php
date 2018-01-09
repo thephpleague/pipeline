@@ -21,7 +21,7 @@ class PipelineBuilderSpec extends ObjectBehavior
 
     function it_should_collect_operations_for_a_pipeline()
     {
-        $this->add(function ($p) {
+        $this->pipe(function ($p) {
             return $p * 2;
         });
 
@@ -31,6 +31,6 @@ class PipelineBuilderSpec extends ObjectBehavior
     function it_should_have_a_fluent_build_interface()
     {
         $operation = function () {};
-        $this->add($operation)->shouldBe($this);
+        $this->pipe($operation)->shouldBe($this);
     }
 }

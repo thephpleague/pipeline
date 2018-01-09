@@ -1,23 +1,30 @@
 <?php
 namespace League\Pipeline;
 
-interface PipelineBuilderInterface
+interface PipelineBuilderInterface extends BuilderInterface
 {
     /**
-     * Add an stage.
+     * Add a stage.
      *
      * @param callable $stage
      *
      * @return $this
      */
-    public function add(callable $stage);
+    public function pipe(callable $stage);
+
+    /**
+     * Forks the pipeline
+     *
+     * @param callable $resolver
+     * @return mixed
+     */
+    public function fork(callable $resolver);
 
     /**
      * Build a new Pipeline object
      *
-     * @param  ProcessorInterface|null $processor
      *
      * @return PipelineInterface
      */
-    public function build(ProcessorInterface $processor = null);
+    public function build();
 }
