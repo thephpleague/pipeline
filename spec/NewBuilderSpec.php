@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: juzerali
- * Date: 09/01/18
- * Time: 8:20 PM
- */
 
 namespace spec\League\Pipeline;
 
