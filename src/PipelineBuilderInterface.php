@@ -1,4 +1,5 @@
 <?php
+
 namespace League\Pipeline;
 
 interface PipelineBuilderInterface
