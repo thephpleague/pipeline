@@ -115,6 +115,53 @@ $pipeline = (new Pipeline)
 $pipeline->process(new DeleteBlogPost($postId));
 ```
 
+## Fork-Join
+
+Sometimes pipeline needs to fork into one of the disparate paths which aren't related
+to each other.
+
+For example, for payload `x` take separate paths depending upon whether `2*x+1` is 0,
+positive, or negative and divide final result by 5.
+
+```php
+$pipeline = (new Pipeline)
+    ->pipe(new TimeTwoStage)
+    ->pipe(new AddOneStage)
+    ->fork(function($payload) {
+            if($payload == 0) return "zero";
+            if($payload < 0) return "-";
+            if($payload > 0) return "+";
+            return false; // for short-circuit
+        })
+        ->disjoin("zero")
+            ->pipe(new ReturnZeroStage)
+        ->disjoin("-")
+            ->pipe(new ExponentOfTwoStage)
+            ->pipe(new AddOneStage)
+        ->disjoin("+")
+            ->pipe(new SquareRootStage)
+            ->pipe(new TimeThirteenStage)
+        ->join()
+    ->pipe(new TimesEightStage);
+```
+
+In order to fork, you need to call `fork` on a pipeline and provide `resolver` of type 
+`callable` as argument. The `resolver` should return a tag to identify which disjoint
+path to take in the fork. After that, you will need to create disjoins. Each disjoin is
+a disparate path which can be followed in the fork. Each disjoin needs to be named with
+a tag. Finally calling `join` on a fork joins it and the parent pipeline processing can
+resume.
+
+You can optionally pass a stage or a pipeline to `disjoin()`. Like so:
+
+```php
+->disjoin("zero", $zeroProcessingPipeline)
+    ->disjoin("-", $negativeNumberProcessingPipeline)
+    ->disjoin("+", $positiveNumberProcessingPipeline)
+    ->join()
+```
+
+
 ## Pipeline Builders
 
 Because pipelines themselves are immutable, pipeline builders are introduced to
