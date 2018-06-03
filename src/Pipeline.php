@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace League\Pipeline;
 
-use InvalidArgumentException;
-
 class Pipeline implements PipelineInterface
 {
     /**
@@ -17,21 +15,10 @@ class Pipeline implements PipelineInterface
      */
     private $processor;
 
-    /**
-     * @param callable[] $stages
-     *
-     * @throws InvalidArgumentException
-     */
-    public function __construct(array $stages = [], ProcessorInterface $processor = null)
+    public function __construct(ProcessorInterface $processor = null, callable ...$stages)
     {
-        foreach ($stages as $stage) {
-            if (false === is_callable($stage)) {
-                throw new InvalidArgumentException('All stages should be callable.');
-            }
-        }
-
-        $this->stages = $stages;
         $this->processor = $processor ?? new FingersCrossedProcessor;
+        $this->stages = $stages;
     }
 
     public function pipe(callable $stage): PipelineInterface

@@ -22,6 +22,6 @@ class PipelineBuilder implements PipelineBuilderInterface
 
     public function build(ProcessorInterface $processor = null): PipelineInterface
     {
-        return new Pipeline($this->stages, $processor);
+        return new Pipeline($processor, ...$this->stages);
     }
 }
