@@ -31,7 +31,7 @@ class Pipeline implements PipelineInterface
 
     public function process($payload)
     {
-        return $this->processor->process($this->stages, $payload);
+        return $this->processor->process($payload, ...$this->stages);
     }
 
     public function __invoke($payload)

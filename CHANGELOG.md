@@ -10,6 +10,7 @@
 
 * Now requires PHP 7.1 or newer.
 * Pipeline requires processor as first argument.
+* Processor requires payload as first argument.
 
 ## 0.3.0 - 2016-10-13
 
