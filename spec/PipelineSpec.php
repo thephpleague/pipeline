@@ -21,7 +21,6 @@ class PipelineSpec extends ObjectBehavior
     function it_should_pipe_operation()
     {
         $operation = function () {};
-        $this->pipe($operation)->shouldHaveType(PipelineInterface::class);
         $this->pipe($operation)->shouldNotBe($this);
     }
 

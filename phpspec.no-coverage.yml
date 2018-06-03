@@ -1,5 +1,0 @@
----
-suites:
-    pipeline_suite:
-        namespace: League\Pipeline
-        psr4_prefix: League\Pipeline

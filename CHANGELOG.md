@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0 - ???
+
+### Added
+
+* Add strict typing.
+
+### Changed
+
+* Now requires PHP 7.1 or newer.
+
 ## 0.3.0 - 2016-10-13
 
 * A pipeline now has a processor which is responsible for the stage invoking.
