@@ -6,7 +6,8 @@ title: Introduction
 
 # League\Pipeline
 
-[![Author](http://img.shields.io/badge/author-@frankdejonge-blue.svg?style=flat-square)](https://twitter.com/frankdejonge)
+[![Maintainer](https://img.shields.io/badge/author-@shadowhand-blue.svg?style=flat-square)](https://twitter.com/shadowhand)
+[![Author](https://img.shields.io/badge/author-@frankdejonge-blue.svg?style=flat-square)](https://twitter.com/frankdejonge)
 [![Build Status](https://img.shields.io/travis/thephpleague/pipeline/master.svg?style=flat-square)](https://travis-ci.org/thephpleague/pipeline)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/pipeline.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/pipeline/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/pipeline.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/pipeline)
@@ -38,5 +39,5 @@ you might want to convert it into a pipeline.
 
 ## Questions?
 
-This package was created by Frank de Jonge, follow him on Twitter for updates: [@frankdejonge](http://twitter.com/frankdejonge)
+This package was created by [@frankdejonge](https://twitter.com/frankdejonge), currently maintained by [@shadowhand](https://twitter.com/shadowhand).
 
