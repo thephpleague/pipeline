@@ -21,14 +21,16 @@ class InterruptibleProcessorSpec extends ObjectBehavior
 
     function it_should_interrupt()
     {
-        $this->process([
+        $this->process(
+            5,
             function ($payload) { return $payload + 2; },
             function ($payload) { return $payload * 10; },
-            function ($payload) { return $payload * 10; },
-        ], 5)->shouldBe(70);
+            function ($payload) { return $payload * 10; }
+        )->shouldBe(70);
 
-        $this->process([
-            function ($payload) { return $payload + 2; },
-        ], 5)->shouldBe(7);
+        $this->process(
+            5,
+            function ($payload) { return $payload + 2; }
+        )->shouldBe(7);
     }
 }

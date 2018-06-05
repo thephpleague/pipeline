@@ -21,7 +21,6 @@ class PipelineSpec extends ObjectBehavior
     function it_should_pipe_operation()
     {
         $operation = function () {};
-        $this->pipe($operation)->shouldHaveType(PipelineInterface::class);
         $this->pipe($operation)->shouldNotBe($this);
     }
 
@@ -39,17 +38,13 @@ class PipelineSpec extends ObjectBehavior
 
     function it_should_execute_operations_in_sequence()
     {
-        $this->beConstructedWith([
+        $this->beConstructedWith(
+            null,
             function ($p) { return $p + 2; },
-            function ($p) { return $p * 10; },
-        ]);
+            function ($p) { return $p * 10; }
+        );
 
         $this->__invoke(1)->shouldBe(30);
-    }
-
-    function it_should_only_allow_operations_as_constructor_arguments()
-    {
-        $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [['fooBar']]);
     }
 
     function it_should_accept_implementations_of_stage()

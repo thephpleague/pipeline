@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace League\Pipeline;
 
@@ -10,28 +11,17 @@ class PipelineBuilder implements PipelineBuilderInterface
     private $stages = [];
 
     /**
-     * Add an stage.
-     *
-     * @param callable $stage
-     *
-     * @return $this
+     * @return self
      */
-    public function add(callable $stage)
+    public function add(callable $stage): PipelineBuilderInterface
     {
         $this->stages[] = $stage;
 
         return $this;
     }
 
-    /**
-     * Build a new Pipeline object
-     *
-     * @param  ProcessorInterface|null $processor
-     *
-     * @return PipelineInterface
-     */
-    public function build(ProcessorInterface $processor = null)
+    public function build(ProcessorInterface $processor = null): PipelineInterface
     {
-        return new Pipeline($this->stages, $processor);
+        return new Pipeline($processor, ...$this->stages);
     }
 }

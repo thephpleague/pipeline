@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace League\Pipeline;
 
@@ -9,28 +10,19 @@ class InterruptibleProcessor implements ProcessorInterface
      */
     private $check;
 
-    /**
-     * InterruptibleProcessor constructor.
-     *
-     * @param callable $check
-     */
     public function __construct(callable $check)
     {
         $this->check = $check;
     }
 
-    /**
-     * @param array $stages
-     * @param mixed $payload
-     *
-     * @return mixed
-     */
-    public function process(array $stages, $payload)
+    public function process($payload, callable ...$stages)
     {
-        foreach ($stages as $stage) {
-            $payload = call_user_func($stage, $payload);
+        $check = $this->check;
 
-            if (true !== call_user_func($this->check, $payload)) {
+        foreach ($stages as $stage) {
+            $payload = $stage($payload);
+
+            if (true !== $check($payload)) {
                 return $payload;
             }
         }

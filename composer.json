@@ -8,7 +8,13 @@
     "authors": [
         {
             "name": "Frank de Jonge",
-            "email": "info@frenky.net"
+            "email": "info@frenky.net",
+            "role": "Author"
+        },
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com",
+            "role": "Maintainer"
         }
     ],
     "autoload": {
@@ -22,13 +28,13 @@
         }
     },
     "require": {
-        "php": ">=5.5"
+        "php": ">=7.1"
     },
     "scripts": {
         "test": "phpspec run"
     },
     "require-dev": {
-        "phpspec/phpspec": "^2.2",
-        "henrikbjorn/phpspec-code-coverage": "^1.0"
+        "phpspec/phpspec": "^4.3",
+        "leanphp/phpspec-code-coverage": "^4.2"
     }
 }

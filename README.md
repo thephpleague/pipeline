@@ -1,13 +1,13 @@
 # League\Pipeline
 
-[![Author](http://img.shields.io/badge/author-@frankdejonge-blue.svg?style=flat-square)](https://twitter.com/frankdejonge)
+[![Author](https://img.shields.io/badge/author-@frankdejonge-blue.svg?style=flat-square)](https://twitter.com/frankdejonge)
+[![Maintainer](https://img.shields.io/badge/maintainer-@shadowhand-blue.svg?style=flat-square)](https://twitter.com/shadowhand)
 [![Build Status](https://img.shields.io/travis/thephpleague/pipeline/master.svg?style=flat-square)](https://travis-ci.org/thephpleague/pipeline)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/pipeline.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/pipeline/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/pipeline.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/pipeline)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/league/pipeline.svg?style=flat-square)](https://packagist.org/packages/league/pipeline)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/pipeline.svg?style=flat-square)](https://packagist.org/packages/league/pipeline)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/44ebfc4c-0e97-4b47-925e-b17de7ddce4f/mini.png)](https://insight.sensiolabs.com/projects/44ebfc4c-0e97-4b47-925e-b17de7ddce4f)
 
 This package provides a pipeline pattern implementation.
 
