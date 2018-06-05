@@ -15,8 +15,9 @@ class FingersCrossedProcessorSpec extends ObjectBehavior
 
     function it_should_process_stages()
     {
-        $this->process([
+        $this->process(
+            2,
             function ($payload) { return $payload * 2; }
-        ], 2)->shouldBe(4);
+        )->shouldBe(4);
     }
 }

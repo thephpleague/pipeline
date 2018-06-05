@@ -3,8 +3,9 @@ suites:
     pipeline_suite:
         namespace: League\Pipeline
         psr4_prefix: League\Pipeline
+
 extensions:
-    - PhpSpec\Extension\CodeCoverageExtension
+    LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension: ~
 
 code_coverage:
     format:

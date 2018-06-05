@@ -14,11 +14,6 @@ class PipelineBuilderSpec extends ObjectBehavior
         $this->shouldHaveType(PipelineBuilder::class);
     }
 
-    function it_should_build_a_pipeline()
-    {
-        $this->build()->shouldHaveType(PipelineInterface::class);
-    }
-
     function it_should_collect_operations_for_a_pipeline()
     {
         $this->add(function ($p) {
