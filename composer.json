@@ -8,7 +8,13 @@
     "authors": [
         {
             "name": "Frank de Jonge",
-            "email": "info@frenky.net"
+            "email": "info@frenky.net",
+            "role": "Author"
+        },
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com",
+            "role": "Maintainer"
         }
     ],
     "autoload": {
