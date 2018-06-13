@@ -9,6 +9,7 @@ interface ProcessorInterface
      * Process the payload using multiple stages.
      *
      * @param mixed $payload
+     * @param callable[] $stages
      *
      * @return mixed
      */
