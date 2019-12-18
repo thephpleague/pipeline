@@ -34,7 +34,7 @@
         "test": "phpspec run"
     },
     "require-dev": {
-        "phpspec/phpspec": "^4.3",
-        "leanphp/phpspec-code-coverage": "^4.2"
+        "phpspec/phpspec": "^4.3.4 || ^5.1.1 || ^6.1",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3.2"
     }
 }
