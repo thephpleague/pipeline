@@ -5,7 +5,7 @@ suites:
         psr4_prefix: League\Pipeline
 
 extensions:
-    LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension: ~
+    FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension: ~
 
 code_coverage:
     format:
