@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace League\Pipeline;
 
-class InterruptibleProcessor implements ProcessorInterface
+class InterruptibleProcessor implements ProcessorInterface, ParametersInterface
 {
+    use ParametersTrait;
+
     /**
      * @var callable
      */
@@ -20,7 +22,7 @@ class InterruptibleProcessor implements ProcessorInterface
         $check = $this->check;
 
         foreach ($stages as $stage) {
-            $payload = $stage($payload);
+            $payload = $stage($payload, ...$this->getParameters());
 
             if (true !== $check($payload)) {
                 return $payload;
