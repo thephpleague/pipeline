@@ -1,0 +1,41 @@
+---
+name: Quality Assurance
+on:
+  push:
+    paths:
+      - src/**/*.php
+      - composer.json
+      - .github/workflows/quality-assurance.yml
+    branches:
+      - master
+      - main
+  pull_request:
+    paths:
+      - src/**/*.php
+      - composer.json
+      - .github/workflows/quality-assurance.yml
+    branches:
+      - master
+      - main
+
+jobs:
+  phpunit:
+    name: PHPUnit tests on ${{ matrix.php }} ${{ matrix.composer-flags }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.2', '7.3', '7.4', '8.0', '8.1', '8.2' ]
+        composer-flags: [ '' ]
+        experimental: [false]
+        phpunit-flags: [ '--coverage-text' ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: pcov
+          tools: composer:v2
+      - run: composer update --no-progress ${{ matrix.composer-flags }}
+      - run: composer test
