@@ -8,7 +8,7 @@ class Pipeline implements PipelineInterface
     /**
      * @var callable[]
      */
-    private $stages = [];
+    private $stages;
 
     /**
      * @var ProcessorInterface
@@ -19,6 +19,11 @@ class Pipeline implements PipelineInterface
     {
         $this->processor = $processor ?? new FingersCrossedProcessor;
         $this->stages = $stages;
+    }
+
+    public static function init(ProcessorInterface $processor = null, callable ...$stages): PipelineInterface
+    {
+        return new self($processor, ...$stages);
     }
 
     public function pipe(callable $stage): PipelineInterface

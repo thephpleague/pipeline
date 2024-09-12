@@ -47,7 +47,7 @@ $result = $stage3($stage2($stage1($payload)));
 
 Pipelines are implemented as immutable stage chains. When you pipe a new
 stage, a new pipeline will be created with the added stage. This makes
-pipelines easy to reuse, and minimizes side-effects.
+pipelines easy to reuse, and minimizes side effects.
 
 ## Usage
 
@@ -56,6 +56,12 @@ type-hint. So closures and anything that's invokable is good.
 
 ```php
 $pipeline = (new Pipeline)->pipe(function ($payload) {
+    return $payload * 10;
+});
+
+// or 
+
+$pipeline = Pipeline::init()->pipe(function ($payload) {
     return $payload * 10;
 });
 ```
@@ -127,6 +133,8 @@ any given time.
 use League\Pipeline\PipelineBuilder;
 
 // Prepare the builder
+// $pipelineBuilder = PipelineBuilder::init()
+// or
 $pipelineBuilder = (new PipelineBuilder)
     ->add(new LogicalStage)
     ->add(new AnotherStage)

@@ -8,6 +8,7 @@ interface PipelineBuilderInterface
     /**
      * Add an stage.
      *
+     * @param callable $stage
      * @return self
      */
     public function add(callable $stage): PipelineBuilderInterface;

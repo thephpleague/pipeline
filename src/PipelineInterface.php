@@ -10,7 +10,7 @@ interface PipelineInterface extends StageInterface
      *
      * @return static
      */
-    public function pipe(callable $operation): PipelineInterface;
+    public function pipe(callable $stage): PipelineInterface;
 
     /**
      * Process the payload.
