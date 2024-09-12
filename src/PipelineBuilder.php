@@ -13,6 +13,14 @@ class PipelineBuilder implements PipelineBuilderInterface
     /**
      * @return self
      */
+    public static function init(): PipelineBuilderInterface
+    {
+        return new self();
+    }
+
+    /**
+     * @return self
+     */
     public function add(callable $stage): PipelineBuilderInterface
     {
         $this->stages[] = $stage;

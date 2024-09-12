@@ -2,13 +2,11 @@
 
 namespace spec\League\Pipeline;
 
-use InvalidArgumentException;
 use League\Pipeline\CallableStage;
 use League\Pipeline\Pipeline;
 use League\Pipeline\PipelineInterface;
 use League\Pipeline\Stub\StubStage;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class PipelineSpec extends ObjectBehavior
 {
@@ -27,6 +25,12 @@ class PipelineSpec extends ObjectBehavior
     function it_should_compose_pipelines()
     {
         $pipeline = (new Pipeline)->pipe(function () { return 10; });
+        $this->pipe($pipeline)->process('something')->shouldBe(10);
+    }
+
+    function it_should_initiate_and_compose_pipelines()
+    {
+        $pipeline = Pipeline::init()->pipe(function () { return 10; });
         $this->pipe($pipeline)->process('something')->shouldBe(10);
     }
 

@@ -14,6 +14,11 @@ class PipelineBuilderSpec extends ObjectBehavior
         $this->shouldHaveType(PipelineBuilder::class);
     }
 
+    function it_is_static_initializable()
+    {
+        $this->shouldBeAnInstanceOf(get_class(PipelineBuilder::init()));
+    }
+
     function it_should_collect_operations_for_a_pipeline()
     {
         $this->add(function ($p) {
