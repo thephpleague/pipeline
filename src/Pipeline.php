@@ -8,23 +8,19 @@ class Pipeline implements PipelineInterface
     /**
      * @var callable[]
      */
-    private $stages = [];
+    private array $stages;
+    private ProcessorInterface $processor;
 
-    /**
-     * @var ProcessorInterface
-     */
-    private $processor;
-
-    public function __construct(ProcessorInterface $processor = null, callable ...$stages)
+    public function __construct(?ProcessorInterface $processor = null, callable ...$stages)
     {
         $this->processor = $processor ?? new FingersCrossedProcessor;
         $this->stages = $stages;
     }
 
-    public function pipe(callable $stage): PipelineInterface
+    public function pipe(callable $operation): PipelineInterface
     {
         $pipeline = clone $this;
-        $pipeline->stages[] = $stage;
+        $pipeline->stages[] = $operation;
 
         return $pipeline;
     }

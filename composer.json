@@ -28,13 +28,12 @@
         }
     },
     "require": {
-        "php": ">=7.1"
+        "php": "^8.0"
     },
     "scripts": {
-        "test": "phpspec run"
+        "test": "phpunit src"
     },
     "require-dev": {
-        "phpspec/phpspec": ">=4.3",
-        "friends-of-phpspec/phpspec-code-coverage": ">=4.3"
+        "phpunit/phpunit": "^11.5"
     }
 }

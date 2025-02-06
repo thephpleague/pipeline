@@ -15,5 +15,5 @@ interface PipelineBuilderInterface
     /**
      * Build a new Pipeline object.
      */
-    public function build(ProcessorInterface $processor = null): PipelineInterface;
+    public function build(?ProcessorInterface $processor = null): PipelineInterface;
 }
